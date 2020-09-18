@@ -10,3 +10,6 @@ class UserEntity(AbstractUser, BaseEntity):
     username = None
     email = models.EmailField(_('email address'), blank=False, unique=True)
     mobile_phone_number = PhoneField(blank=True, help_text='Contact phone number')
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
