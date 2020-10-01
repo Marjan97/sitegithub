@@ -26,6 +26,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'identity.mybackend.ModelBackend',
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -75,9 +80,16 @@ WSGI_APPLICATION = 'campaign_site.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
+    # }
+'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'campaign_site',
+        'USER': 'root',
+        'PASSWORD': '48507684',
+        'PORT':3307
     }
 }
 
