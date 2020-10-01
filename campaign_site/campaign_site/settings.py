@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from commons.config.runtime_config import RuntimeConfig
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -22,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '464b^-%p8jho-t=rykz0a!mtv03f2fyzv)r0l2%+y7kf0h!q75'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = RuntimeConfig.DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = RuntimeConfig.ALLOWED_HOSTS
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -42,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'identity',
     'commons',
+    'rest_framework',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -80,16 +85,14 @@ WSGI_APPLICATION = 'campaign_site.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
-    # }
-'default': {
+
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'campaign_site',
-        'USER': 'root',
-        'PASSWORD': '48507684',
-        'PORT':3307
+        'NAME': RuntimeConfig.MYSQL_DB_SCHEMA,
+        'USER': RuntimeConfig.MYSQL_DB_USERNAME,
+        'PASSWORD': RuntimeConfig.MYSQL_DB_PASSWORD,
+        'HOST': RuntimeConfig.MYSQL_DB_URL,  # Or an IP Address that your DB is hosted on
+        'PORT': RuntimeConfig.MYSQL_DB_PORT,
     }
 }
 
@@ -128,4 +131,3 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-AUTH_USER_MODEL = 'identity.UserEntity'
