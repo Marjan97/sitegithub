@@ -21,4 +21,4 @@ class UserEntity(AbstractUser, BaseEntity):
     objects = MyUserManager()
     backend = 'identity.mybackend.MobileBackend'
 
-    REQUIRED_FIELDS = [mobile_phone_number]
+    # REQUIRED_FIELDS = [mobile_phone_number]

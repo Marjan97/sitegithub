@@ -1,8 +1,11 @@
 from django.urls import path
-from . import views
+from identity.views.otp_mobile_phone_sms import *
 
 
 urlpatterns = [
-    path('login/', views.mobile_login, name='mobile_login'),
-    path('dashboard/', views.dashboard, name='dashboard'),
+    # path('login/', mobile_login, name='mobile_login'),
+    path('', register_view, name='register_view'),
+    path('verify/', verify, name='verify'),
+
+    path('dashboard/', dashboard, name='dashboard'),
 ]
