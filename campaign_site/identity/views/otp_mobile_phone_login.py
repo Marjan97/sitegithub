@@ -1,36 +1,46 @@
 from django.contrib.auth import login
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse,JsonResponse
+from rest_framework.parsers import JSONParser
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
 from django.urls import reverse
 from django.shortcuts import render
 from identity.models import UserEntity
 from identity import forms,helper_send_otp
+from identity.serializers.mobile_login_serializers import mobileloginserializer
 
 
 
 # Create your views here.
-def mobile_phone_login(request):
-    form = forms.RegisterForm
+# @api_view(['POST'])
+class mobile_phone_login(APIView):
+    # def get (self,request):
+    #     Users = UserEntity.objects.all()
+    #     userserializer = mobileloginserializer(Users, many=True)
+    #     return Response(userserializer.data)
 
-    if request.method == "POST":
-        try:
-            if "mobile" in request.POST:
-                mobile = request.POST.get('mobile')
-                user = UserEntity.objects.get(mobile_phone_number=mobile)
-                # send otp
-                otp = helper_send_otp.get_random_otp() # create otp
-                helper_send_otp.send_otp_soap(mobile, otp)  # send otp
-                user.otp = otp
-                user.save()
-                request.session['user_mobile'] = user.mobile_phone_number
-                print (otp) #check value of otp
-                return HttpResponseRedirect(reverse('verify_otp_login'))
+    def post(self, request):
 
 
-        except UserEntity.DoesNotExist:
-            #print error message
-            pass
+            userserializer=mobileloginserializer(mobile_phone_number=request.data)
+            # print ('error')
 
-    return render(request, 'mobile_phone_login.html', {'form': form})
+            otp = helper_send_otp.get_random_otp() # create otp
+            helper_send_otp.send_otp_soap(userserializer.mobile_phone_number, otp)
+            userserializer.otp = otp# send otp
+            if userserializer.is_valid():
+             userserializer.save()
+             print (otp)  # check value of otp
+             # request.session['user_mobile'] = user.mobile_phone_number
+             return Response(userserializer.mobile_phone_number)
+            return JsonResponse(userserializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
 
 
 
