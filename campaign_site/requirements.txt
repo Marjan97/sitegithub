@@ -4,5 +4,5 @@ django-phone-field==1.8.1
 djangorestframework-simplejwt==4.3.0
 djoser==2.0.5
 pymysql==0.10.1
-kavenegar==19.3.1
-zeep==19.3.1
+kavenegar==1.1.2
+zeep==3.4.0

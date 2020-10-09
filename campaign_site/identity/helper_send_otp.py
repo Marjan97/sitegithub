@@ -4,6 +4,7 @@ from random import randint
 from zeep import Client
 import time
 from .models import UserEntity
+import datetime
 
 
 
@@ -43,7 +44,7 @@ def send_otp(mobile, otp):
     try:
         api = KavenegarAPI(Kavenegar_API)
         params = {
-            'sender': '1000596446',  # optional
+            'sender': '',  # optional
             'receptor': mobile,   # multiple mobile number
             'message': 'Your OTP is {}'.format(otp),
         }
