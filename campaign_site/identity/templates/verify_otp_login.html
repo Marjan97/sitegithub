@@ -7,7 +7,7 @@
 <h1>Verify</h1>
 <form method="post" action=".">
     {% csrf_token %}
-    <input type="mobile" name="mobile"  readonly  value="{{ mobile}}"/>
+    <input type="text" name="mobile"  readonly  value="{{ mobile}}"/>
 
     <input type="number" name="otp" />
     <input type="submit"  value="check otp"/>

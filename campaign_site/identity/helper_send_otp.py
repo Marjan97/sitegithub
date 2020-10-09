@@ -3,6 +3,7 @@ from kavenegar import *
 from random import randint
 from zeep import Client
 import time
+from .models import UserEntity
 
 
 
@@ -37,12 +38,6 @@ def send_otp_soap(mobile, otp):
     # 403 errror
 
 
-
-
-
-
-
-
 def send_otp(mobile, otp):
     mobile = [mobile, ]
     try:
@@ -63,3 +58,19 @@ def send_otp(mobile, otp):
 
 def get_random_otp():
     return  randint(1000, 9999)
+
+
+def check_otp_expiration(mobile):
+     try:
+         user = UserEntity.objects.get(mobile_phone_number=mobile)
+         now = datetime.datetime.now()
+         otp_time = user.otp_create_time
+         diff_time = now - otp_time
+         print('OTP TIME: ', diff_time)
+
+         if diff_time.seconds > 120:
+             return False
+         return True
+
+     except UserEntity.DoesNotExist:
+         return False

@@ -28,13 +28,14 @@ class mobile_phone_login(APIView):
             # print ('error')
 
             otp = helper_send_otp.get_random_otp() # create otp
-            helper_send_otp.send_otp_soap(userserializer.mobile_phone_number, otp)
-            userserializer.otp = otp# send otp
+            # todo check users how many times send request to get message
+            helper_send_otp.send_otp_soap(userserializer.mobile_phone_number, otp)# send otp
+            userserializer.otp = otp
             if userserializer.is_valid():
-             userserializer.save()
-             print (otp)  # check value of otp
-             # request.session['user_mobile'] = user.mobile_phone_number
-             return Response(userserializer.mobile_phone_number)
+              userserializer.save()
+              print (otp)  # check value of otp
+              request.session['user_mobile'] = user.mobile_phone_number
+              return Response(userserializer.mobile_phone_number)
             return JsonResponse(userserializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -44,11 +45,11 @@ class mobile_phone_login(APIView):
 
 
 
-def verify_otp_login(request):
-
-    mobile = request.session.get('user_mobile')
-    return render (request,'verify_otp_login.html',{'mobile':mobile})
-
+# def verify_otp_login(request):
+#
+#     mobile = request.session.get('user_mobile')
+#     return render (request,'verify_otp_login.html',{'mobile':mobile})
+#
 
 
 
