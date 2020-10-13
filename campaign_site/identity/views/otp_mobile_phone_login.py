@@ -28,11 +28,11 @@ class mobile_phone_login(APIView):
     def post(self, request, *args, **kwargs):
         mobile_phone_number = request.data.get("mobile_phone_number")
         user_entity = get_object_or_404(UserEntity, mobile_phone_number=mobile_phone_number)
-        #
+        #todo change mobile to code
         otp = helper_send_otp.get_random_otp()  # create otp
         helper_send_otp.send_otp_soap(mobile_phone_number, otp)
         user_entity.otp = otp
-        user_entity.password=otp #todo set hash password
+        user_entity.set_password(otp)
         user_entity.save()
         return JsonResponse(data={"mobile_phone_number": mobile_phone_number,"message":'otp sent'}, status=status.HTTP_200_OK)
 
