@@ -1,7 +1,9 @@
 from django.contrib.auth.base_user import BaseUserManager
 
+from commons.manager.base_entity_manager import BaseEntityManager
 
-class MyUserManager(BaseUserManager):
+
+class MyUserManager(BaseUserManager, BaseEntityManager):
     def create_user(self, mobile_phone_number, password=None, **other_fields):
         if not mobile_phone_number:
             raise ValueError("mobile is required...!")

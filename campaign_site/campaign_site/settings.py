@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from datetime import timedelta
+
 from commons.config.runtime_config import RuntimeConfig
 
 
@@ -44,11 +46,13 @@ INSTALLED_APPS = [
 
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'djoser',
+
     'identity',
     'commons',
-    'rest_framework',
-# 'knox',
-    'djoser',
+    'reserve'
+
 ]
 
 MIDDLEWARE = [
@@ -141,4 +145,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         # 'knox.auth.TokenAuthentication',
     ]
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'AUTH_HEADER_TYPES': ('JWT', 'Token',),
 }

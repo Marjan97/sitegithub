@@ -10,3 +10,7 @@ class UserType(ChoiceEnum):
     superadmin = 1
     admin = 2
     simple = 3
+
+class GenderType(ChoiceEnum):
+    Male = 1
+    Female = 2
