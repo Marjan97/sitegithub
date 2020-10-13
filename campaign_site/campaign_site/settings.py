@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'djoser',
 
     'identity',
@@ -140,11 +141,8 @@ STATIC_URL = '/static/'
 Kavenegar_API = '************'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        # 'knox.auth.TokenAuthentication',
-    ]
+    'DEFAULT_AUTHENTICATION_CLASSES': RuntimeConfig.AUTHENTICATION_CLASSES,
+    'DEFAULT_PERMISSION_CLASSES': RuntimeConfig.REST_FRAMEWORK_DEFAULT_PERMISSION_CLASSES
 }
 
 SIMPLE_JWT = {
