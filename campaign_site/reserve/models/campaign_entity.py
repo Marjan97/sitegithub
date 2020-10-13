@@ -11,6 +11,8 @@ class CampaignEntity(BaseModel):
     description = models.CharField(max_length=100, blank=False)
     creator = models.ForeignKey('identity.UserEntity', on_delete=models.PROTECT,
                                 null=False, related_name='campaigns')
+    gender = models.IntegerField(choices=GenderType.choices(), null=True)
+    year_of_entry = models.IntegerField(null=True)
     capacity = models.IntegerField()
 
     cost = models.DecimalField(max_digits=6, decimal_places=2)
