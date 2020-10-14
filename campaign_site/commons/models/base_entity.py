@@ -38,3 +38,4 @@ class BaseModel(BaseEntity, models.Model):
 
     class Meta:
         abstract = True
+
