@@ -1,6 +1,6 @@
 from identity.models import UserEntity
 from django.http import JsonResponse
-from identity.manager import helper_send_otp
+from identity.manager import send_otp_helper
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.generics import get_object_or_404
@@ -14,7 +14,7 @@ class verify(APIView):
 
 
         # check otp expiration
-        if not helper_send_otp.check_otp_expiration(user.mobile_phone_number):
+        if not send_otp_helper.check_otp_expiration(user.mobile_phone_number):
             return JsonResponse(data={"message": "OTP is expired"}, status=status.HTTP_200_OK)
         # check value of otp
         if user.otp != int(request.data.get("otp")):

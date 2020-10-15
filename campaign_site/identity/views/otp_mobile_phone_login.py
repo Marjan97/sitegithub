@@ -7,8 +7,8 @@ from rest_framework.views import APIView
 from django.shortcuts import render
 
 from commons.views.basic_view import BasicView
+from identity.manager.send_otp_helper import SendOTPHelper
 from identity.models import UserEntity
-from identity.manager import helper_send_otp
 from identity.serializers.mobile_login_serializers import mobileloginserializer
 
 
@@ -31,8 +31,8 @@ class MobilePhoneLogin(BasicView, APIView):
         mobile_phone_number = request.data.get("mobile_phone_number")
         user_entity = get_object_or_404(UserEntity, mobile_phone_number=mobile_phone_number)
         # todo change mobile to code
-        otp = helper_send_otp.get_random_otp()  # create otp
-        helper_send_otp.send_otp_soap(mobile_phone_number, otp)
+        otp = SendOTPHelper().get_random_otp()  # create otp
+        SendOTPHelper().send_otp_soap(mobile_phone_number, otp)
         user_entity.otp = otp
         user_entity.set_password(otp)
         user_entity.save()
