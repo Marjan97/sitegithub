@@ -18,7 +18,7 @@ class UserEntity(AbstractUser, BaseEntity):
     otp = models.PositiveIntegerField(blank=True, null=True)
     otp_create_time = models.DateTimeField(auto_now=True)
     user_type = models.IntegerField(choices=UserType.choices(), default=UserType.simple.value)
-    student_code = models.CharField(max_length=10, unique=True, null=False)
+    student_code = models.CharField(max_length=10, unique=True, null=False) # todo change name of student_code
     gender = models.IntegerField(choices=GenderType.choices(), null=True)
     year_of_entry = models.IntegerField(null=True)
 

@@ -3,7 +3,7 @@ from kavenegar import *
 from random import randint
 from zeep import Client
 import time
-from .models import UserEntity
+from identity.models import UserEntity
 import datetime
 
 

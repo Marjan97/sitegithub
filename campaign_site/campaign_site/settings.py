@@ -9,8 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-import django
-django.setup()
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -34,7 +33,7 @@ ALLOWED_HOSTS = RuntimeConfig.ALLOWED_HOSTS
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'identity.mybackend.ModelBackend',
+    'identity.mobile_backend.ModelBackend',
 ]
 
 # Application definition

@@ -1,18 +1,14 @@
-from django.contrib.auth import login
-from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+from django.http import JsonResponse
 from rest_framework.generics import get_object_or_404
-from rest_framework.parsers import JSONParser
-from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from django.urls import reverse
 from django.shortcuts import render
 
 from commons.views.basic_view import BasicView
 from identity.models import UserEntity
-from identity import forms, helper_send_otp
+from identity.manager import helper_send_otp
 from identity.serializers.mobile_login_serializers import mobileloginserializer
 
 
