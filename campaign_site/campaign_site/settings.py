@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from datetime import timedelta
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'djoser',
 
@@ -142,7 +144,11 @@ Kavenegar_API = '************'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': RuntimeConfig.AUTHENTICATION_CLASSES,
-    'DEFAULT_PERMISSION_CLASSES': RuntimeConfig.REST_FRAMEWORK_DEFAULT_PERMISSION_CLASSES
+    'DEFAULT_PERMISSION_CLASSES': RuntimeConfig.REST_FRAMEWORK_DEFAULT_PERMISSION_CLASSES,
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
 }
 
 SIMPLE_JWT = {

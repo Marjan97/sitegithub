@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from django.shortcuts import render
-
+from rest_framework.renderers import JSONRenderer
 from commons.views.basic_view import BasicView
 from identity.manager.send_otp_helper import SendOTPHelper
 from identity.models import UserEntity
@@ -17,22 +17,26 @@ from identity.serializers.mobile_login_serializers import mobileloginserializer
 class MobilePhoneLogin(BasicView, APIView):
     http_method_names = ['get', 'post']
     permission_classes = (IsAuthenticated,)
+    renderer_classes = [JSONRenderer]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+    def initial(self, request, *args, **kwargs):
+        super().initial(request, *args, **kwargs)
 
     def get(self, request):
         Users = UserEntity.objects.all()
         userserializer = mobileloginserializer(Users, many=True)
         return Response(userserializer.data)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         
         mobile_phone_number = request.data.get("mobile_phone_number")
         user_entity = get_object_or_404(UserEntity, mobile_phone_number=mobile_phone_number)
         # todo change mobile to code
-        otp = SendOTPHelper().get_random_otp()  # create otp
-        SendOTPHelper().send_otp_soap(mobile_phone_number, otp)
+        otp = SendOTPHelper.get_random_otp()  # create otp
+        SendOTPHelper.send_otp_soap(mobile_phone_number, otp)
         user_entity.otp = otp
         user_entity.set_password(otp)
         user_entity.save()
@@ -40,5 +44,4 @@ class MobilePhoneLogin(BasicView, APIView):
                             status=status.HTTP_200_OK)
 
 
-def dashboard(request):
-    return render(request, 'dashboard.html')
+
