@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from django.shortcuts import render
 from commons.views.basic_view import BasicView
-from campaign.models import campaign_entity,registered_users
+from campaign.models import campaign_entity, registered_users, CampaignEntity
 from identity.models import UserEntity
 
 from campaign.serializers.camps_home_serializer import CampsHomeSerializer
@@ -24,9 +24,11 @@ class ShowHomeCamps(BasicView, APIView):
 
     def get(self, request):
         user_entity = get_object_or_404(UserEntity, student_code=self.user.student_code)
-        accessible_camps = campaign_entity.objects.filter(gender=user_entity.gender,year_of_entry=user_entity.year_of_entry,
-                                                          is_verified=1)
-        #todo which camp is registered by user
-        camps_serializer=CampsHomeSerializer(accessible_camps,many=True)
+        accessible_camps = CampaignEntity.objects.filter(
+            gender=user_entity.gender,
+            year_of_entry=user_entity.year_of_entry,
+            is_verified=1)
+        # todo which camp is registered by user
+        camps_serializer = CampsHomeSerializer(accessible_camps, many=True)
 
         return Response(camps_serializer.data, status=status.HTTP_200_OK)

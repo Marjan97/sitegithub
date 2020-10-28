@@ -6,5 +6,6 @@ class CampsHomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = campaign_entity
         fields = [
+            'id',
             'name',
         ]
