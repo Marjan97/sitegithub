@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('reserve', '0005_auto_20201013_2213'),
+        ('campaign', '0005_auto_20201013_2213'),
     ]
 
     operations = [
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('last_update_time', models.DateTimeField(auto_now=True)),
                 ('is_deleted', models.BooleanField(default=False, editable=False)),
                 ('deletion_time', models.DateTimeField(blank=True, default=None, editable=False, null=True)),
-                ('campaign', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='registered_users', to='reserve.CampaignEntity')),
+                ('campaign', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='registered_users', to='campaign.CampaignEntity')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='registered_campaigns', to=settings.AUTH_USER_MODEL)),
             ],
             options={

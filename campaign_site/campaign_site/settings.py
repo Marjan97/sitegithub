@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 
     'identity',
     'commons',
-    'reserve'
+    'campaign'
 
 ]
 

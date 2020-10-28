@@ -7,7 +7,7 @@ from commons.models.base_entity import BaseModel
 class RegisteredUsers(BaseModel):
     user = models.ForeignKey('identity.UserEntity', on_delete=models.PROTECT,
                              null=False, related_name='registered_campaigns')
-    campaign = models.ForeignKey('reserve.CampaignEntity', on_delete=models.PROTECT,
+    campaign = models.ForeignKey('campaign.CampaignEntity', on_delete=models.PROTECT,
                                  null=False, related_name='registered_users')
 
     objects = BaseEntityManager(alive_only=True)

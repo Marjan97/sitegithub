@@ -6,10 +6,10 @@ from rest_framework import status
 from rest_framework.views import APIView
 from django.shortcuts import render
 from commons.views.basic_view import BasicView
-from reserve.models import campaign_entity,registered_users
+from campaign.models import campaign_entity,registered_users
 from identity.models import UserEntity
 
-from reserve.serializers.camps_home_sreializer import CampsHomeSerializer
+from campaign.serializers.camps_home_serializer import CampsHomeSerializer
 
 
 class ShowHomeCamps(BasicView, APIView):

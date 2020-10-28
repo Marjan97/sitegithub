@@ -4,9 +4,9 @@ from rest_framework import status
 from rest_framework.views import APIView
 from django.shortcuts import render
 from commons.views.basic_view import BasicView
-from reserve.models import campaign_entity
+from campaign.models.campaign_entity import CampaignEntity
 from identity.models import UserEntity
-from reserve.serializers.camp_detail_sreializer import CampsDetailsSerializer
+from campaign.serializers.camp_detail_sreializer import CampsDetailsSerializer
 
 
 class CampDetails(BasicView, APIView):
@@ -19,15 +19,13 @@ class CampDetails(BasicView, APIView):
     def initial(self, request, *args, **kwargs):
         super().initial(request, *args, **kwargs)
 
-    def get_obj(self,id):
+    def get_obj(self, id):
         try:
-           return campaign_entity.objects.get(id=id)
-        except campaign_entity.DoesNotExist:
-            return JsonResponse(data={"message": 'Camp DoesNotExist '},status=status.HTTP_404_NOT_FOUND)
+            return CampaignEntity.objects.get(id=id)
+        except CampaignEntity.DoesNotExist:
+            return JsonResponse(data={"message": 'Camp DoesNotExist '}, status=status.HTTP_404_NOT_FOUND)
 
-    def get(self,request,id):
-        camp_id=self.get_obj(id)
-        camp_serializer = CampsDetailsSerializer(camp_id)
+    def get(self, request, id):
+        camp_entity = self.get_obj(id)
+        camp_serializer = CampsDetailsSerializer(camp_entity)
         return JsonResponse(camp_serializer.data, status=status.HTTP_200_OK)
-
-
