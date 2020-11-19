@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
 
     path('api/auth/', include('djoser.urls.jwt')),
     path('admin/', admin.site.urls),
-    path('api/identity/', include('identity.urls'),
-         path('api/campaign/', include('campaign.urls'))),
+    path('api/identity/', include('identity.urls')),
+    path('api/campaign/', include('campaign.urls')),
 
-]
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
