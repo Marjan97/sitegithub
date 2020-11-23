@@ -6,10 +6,10 @@ from rest_framework import status
 from rest_framework.views import APIView
 from django.shortcuts import render
 from commons.views.basic_view import BasicView
-from campaign.models import campaign_entity, registered_users, CampaignEntity
+from reserve.models import campaign_entity, registered_users, CampaignEntity
 from identity.models import UserEntity
 
-from campaign.serializers.camps_home_serializer import CampsHomeSerializer
+from reserve.serializers.camps_home_serializer import CampsHomeSerializer
 
 
 class ShowHomeCamps(BasicView, APIView):
@@ -23,11 +23,13 @@ class ShowHomeCamps(BasicView, APIView):
         super().initial(request, *args, **kwargs)
 
     def get(self, request):
-        user_entity = get_object_or_404(UserEntity, student_code=self.user.student_code)
         accessible_camps = CampaignEntity.objects.filter(
-            gender=user_entity.gender,
-            year_of_entry=user_entity.year_of_entry,
-            is_verified=1)
+            gender=self.user.gender,
+            year_of_entry=self.user.year_of_entry,
+            is_verified=1, )
+
+        user_registered_accessible_campaigns = accessible_camps.filter(registered_users__exact=self.user.id).distinc()
+
         # todo which camp is registered by user
         camps_serializer = CampsHomeSerializer(accessible_camps, many=True)
 

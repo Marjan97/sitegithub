@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from campaign.models import campaign_entity
+from reserve.models import campaign_entity
 
 
 class CampsHomeSerializer(serializers.ModelSerializer):

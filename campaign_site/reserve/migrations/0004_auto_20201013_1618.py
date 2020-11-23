@@ -7,7 +7,7 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('campaign', '0003_auto_20201012_1742'),
+        ('reserve', '0003_auto_20201012_1742'),
     ]
 
     operations = [

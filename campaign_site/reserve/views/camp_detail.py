@@ -4,9 +4,9 @@ from rest_framework import status
 from rest_framework.views import APIView
 from django.shortcuts import render
 from commons.views.basic_view import BasicView
-from campaign.models.campaign_entity import CampaignEntity
+from reserve.models.campaign_entity import CampaignEntity
 from identity.models import UserEntity
-from campaign.serializers.camp_detail_sreializer import CampsDetailsSerializer
+from reserve.serializers.camp_detail_sreializer import CampsDetailsSerializer
 
 
 class CampDetails(BasicView, APIView):

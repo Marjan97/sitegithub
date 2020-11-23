@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('campaign', '0002_auto_20201012_1738'),
+        ('reserve', '0002_auto_20201012_1738'),
     ]
 
     operations = [

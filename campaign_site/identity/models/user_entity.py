@@ -6,6 +6,7 @@ from commons.manager.base_entity_manager import BaseEntityManager
 from identity.enums import UserType, GenderType
 from commons.models.base_entity import BaseEntity
 from identity.manager.user_entity_manager import MyUserManager
+from reserve.models import CampaignEntity
 
 
 class UserEntity(AbstractUser, BaseEntity):
@@ -14,6 +15,7 @@ class UserEntity(AbstractUser, BaseEntity):
     date_joined = None
     password = models.CharField(_('password'), null=True, blank=True, max_length=128)
     mobile_phone_number = models.CharField(max_length=12, blank=True, help_text='Contact phone number', unique=True)
+    registered_campaigns = models.ManyToManyField(CampaignEntity)
     # todo change name of otp
     otp = models.PositiveIntegerField(blank=True, null=True)
     otp_create_time = models.DateTimeField(auto_now=True)

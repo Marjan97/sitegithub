@@ -18,7 +18,7 @@ class UserInfo(BasicView, APIView):
     def initial(self, request, *args, **kwargs):
         super().initial(request, *args, **kwargs)
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         user_entity = get_object_or_404(UserEntity, student_code=self.user.student_code)
         user_serializer = UserInfoSerializer(user_entity)
 

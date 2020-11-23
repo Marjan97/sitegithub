@@ -1,6 +1,6 @@
 from django.urls import path
-from campaign.views.show_home_camps import ShowHomeCamps
-from campaign.views.camp_detail import CampDetails
+from reserve.views.show_home_camps import ShowHomeCamps
+from reserve.views.camp_detail import CampDetails
 
 urlpatterns = [
 
