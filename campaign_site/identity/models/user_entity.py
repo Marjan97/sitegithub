@@ -14,15 +14,18 @@ class UserEntity(AbstractUser, BaseEntity):
     is_staff = None
     date_joined = None
     password = models.CharField(_('password'), null=True, blank=True, max_length=128)
-    mobile_phone_number = models.CharField(max_length=12, blank=True, help_text='Contact phone number', unique=True)
-    registered_campaigns = models.ManyToManyField(CampaignEntity)
+    mobile_phone_number = models.CharField(max_length=12, blank=True, help_text='Contact phone number',null=True)
     # todo change name of otp
     otp = models.PositiveIntegerField(blank=True, null=True)
     otp_create_time = models.DateTimeField(auto_now=True)
     user_type = models.IntegerField(choices=UserType.choices(), default=UserType.simple.value)
     student_code = models.CharField(max_length=10, unique=True, null=False) # todo change name of student_code
+    national_code=models.CharField(max_length=10,null=True)
+    account_number=models.CharField(max_length=16,null=True)
+    study=models.CharField(max_length=20,blank=True)
     gender = models.IntegerField(choices=GenderType.choices(), null=True)
     year_of_entry = models.IntegerField(null=True)
+    is_guest=models.BooleanField(default=False)
 
     objects = MyUserManager(alive_only=True)
     objects_including_deleted = MyUserManager(alive_only=False)
