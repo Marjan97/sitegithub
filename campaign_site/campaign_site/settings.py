@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'identity',
     'commons',
     'reserve',
-    'django_mysql',
 
 ]
 

@@ -12,7 +12,6 @@ class UserInfoSerializer(serializers.ModelSerializer):
             'last_name',
             'user_type',
             'student_code',
-            'year_of_entry',
-            'study',
+            'field_of_study',
             'year_of_entry',
         ]
