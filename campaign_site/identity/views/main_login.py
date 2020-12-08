@@ -7,11 +7,9 @@ from rest_framework.permissions import IsAuthenticated
 from commons.views.basic_view import BasicView
 
 
-
-class main_login(BasicView,APIView):
+class main_login(BasicView, APIView):
     http_method_names = ['get', 'post']
     permission_classes = (IsAuthenticated,)
-
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -22,7 +20,7 @@ class main_login(BasicView,APIView):
     def post(self, request):
 
         student_code = request.data.get("student_code")
-        national_code = request.data.get("national_code")
+        national_code = request.data.get("password")
 
         user = get_object_or_404(UserEntity, student_code=student_code)
         # user.set_password(national_code)
@@ -35,7 +33,4 @@ class main_login(BasicView,APIView):
 
         user.is_active = True
         user.save()
-        return JsonResponse(data={"message":"Welcome!!!"}, status=status.HTTP_200_OK)
-
-
-
+        return JsonResponse(data={"message": "Welcome!!!"}, status=status.HTTP_200_OK)
