@@ -35,6 +35,18 @@ AUTHENTICATION_BACKENDS = [
     'identity.mobile_backend.ModelBackend',
 ]
 
+# Email Setting
+EMAIL_BACKEND = RuntimeConfig.EMAIL_BACKEND
+EMAIL_HOST = RuntimeConfig.EMAIL_HOST
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = RuntimeConfig.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = RuntimeConfig.EMAIL_HOST_PASSWORD
+
+#templated-email
+DEFAULT_FROM_EMAIL = RuntimeConfig.EMAIL_HOST_USER
+DOMAIN = RuntimeConfig.DOMAIN_NAME
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -54,9 +66,13 @@ INSTALLED_APPS = [
     'commons',
     'reserve',
 
+    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -66,9 +82,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': 'username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SET_PASSWORD_RETYPE': True,
+    'SERIALIZERS': {},
+}
+
 AUTH_USER_MODEL = 'identity.UserEntity'
 
 ROOT_URLCONF = 'campaign_site.urls'
+
+SITE_NAME = 'Campaign Reserving'
 
 TEMPLATES = [
     {

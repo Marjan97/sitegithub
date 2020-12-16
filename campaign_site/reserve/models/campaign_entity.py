@@ -7,10 +7,6 @@ from commons.models.base_entity import BaseModel
 from identity.enums import GenderType
 
 
-def get_year_of_entry_field_default_value():
-    return list()
-
-
 class CampaignEntity(BaseModel):
     name = models.CharField(max_length=30, blank=False)
     description = models.CharField(max_length=100, blank=False)

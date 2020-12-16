@@ -1,4 +1,3 @@
-
 class DevelopmentRuntimeConfig:
     AUTHENTICATION_CLASSES = (
         'rest_framework.authentication.TokenAuthentication',
@@ -27,6 +26,11 @@ class DevelopmentRuntimeConfig:
     # MYSQL_DB_USERNAME = "root"
     # MYSQL_DB_PASSWORD = "48507684"
     # MYSQL_DB_SCHEMA = "campaign_site"
+    EMAIL_HOST_USER = None
+    EMAIL_HOST_PASSWORD = None
+    EMAIL_BACKEND = None
+    EMAIL_HOST = None
+    DOMAIN_NAME = None
 
 
 class RuntimeConfig(DevelopmentRuntimeConfig):

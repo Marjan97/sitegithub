@@ -19,10 +19,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+                  path('api/auth/', include('djoser.urls.authtoken')),
+                  path('api/auth/', include('djoser.urls.base')),
 
-    path('api/auth/', include('djoser.urls.jwt')),
-    path('admin/', admin.site.urls),
-    path('api/identity/', include('identity.urls')),
-    path('api/reserve/', include('reserve.urls')),
+                  path('api/auth/', include('djoser.urls.jwt')),
+                  # path('admin/', admin.site.urls),
+                  path('api/identity/', include('identity.urls')),
+                  path('api/reserve/', include('reserve.urls')),
 
-]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
