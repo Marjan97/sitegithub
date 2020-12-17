@@ -1,4 +1,6 @@
 class PayloadParamName:
+    mobile_phone_number = "mobile_phone_number"
+    email = "email"
     id = "id"
     result = "result"
     name = "name"
@@ -12,3 +14,4 @@ class PayloadParamName:
     execution_time = "execution_time"
     user_id = "user_id"
     count = "count"
+    account_number = "account_number"

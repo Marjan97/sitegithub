@@ -6,10 +6,11 @@ class ChoiceEnum(Enum):
     def choices(cls):
         return tuple((x.value, x.name) for x in cls)
 
+
 class UserType(ChoiceEnum):
-    superadmin = 1
-    admin = 2
-    simple = 3
+    admin = 1
+    simple = 2
+
 
 class GenderType(ChoiceEnum):
     Male = 1

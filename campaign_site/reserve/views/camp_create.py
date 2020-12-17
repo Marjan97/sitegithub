@@ -1,15 +1,13 @@
 from django.http import JsonResponse
-from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from rest_framework.views import APIView
-from django.shortcuts import render
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import IsAuthenticated
+
 from commons.views.basic_view import BasicView
-from reserve.models.campaign_entity import CampaignEntity
-from identity.models import UserEntity
 from reserve.serializers.camp_create_serializer import CampsCreateFormSerializer
 
 
-class CampCreate(BasicView, APIView):
+class CampCreate(BasicView, CreateAPIView):
     http_method_names = ['post']
     permission_classes = (IsAuthenticated,)
 
@@ -19,7 +17,7 @@ class CampCreate(BasicView, APIView):
     def initial(self, request, *args, **kwargs):
         super().initial(request, *args, **kwargs)
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         camp_object = CampsCreateFormSerializer(data=request.data)
         if camp_object.is_valid():
             camp_object.save()

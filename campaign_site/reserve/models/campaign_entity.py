@@ -21,6 +21,9 @@ class CampaignEntity(BaseModel):
     is_verified = models.BooleanField()
     verification_time = models.DateTimeField(blank=True, null=True)
 
+    is_canceled = models.BooleanField(default=0)
+    cancel_time = models.DateTimeField(blank=True, null=True)
+
     execution_time = models.DateTimeField(blank=True, null=True)
     Registration_time_1 = models.DateTimeField(blank=True, null=True)
     Registration_time_2 = models.DateTimeField(blank=True, null=True)
