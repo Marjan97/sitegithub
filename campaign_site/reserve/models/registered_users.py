@@ -13,7 +13,7 @@ class RegisteredUsers(BaseModel):
 
     # IMPORTANT: when user cancels a campaign or a campaign in canceled by admin these 3 fields are filled.
     is_canceled = models.BooleanField(default=0)
-    canceled_by = models.IntegerField(choices=UserType.choices(), default=UserType.simple.value)
+    canceled_by = models.IntegerField(choices=UserType.choices(), default=None)
     cancel_time = models.DateTimeField(blank=True, null=True)
 
     objects = BaseEntityManager(alive_only=True)
