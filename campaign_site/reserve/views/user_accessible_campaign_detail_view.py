@@ -13,7 +13,7 @@ from identity.models import UserEntity
 from reserve.serializers.camp_detail_sreializer import CampsDetailsSerializer
 
 
-class CampDetails(BasicView, APIView):
+class UserAccessibleCampaignDetailView(BasicView, APIView):
     http_method_names = ['get', 'post']
     permission_classes = (IsAuthenticated,)
 
@@ -23,9 +23,9 @@ class CampDetails(BasicView, APIView):
     def initial(self, request, *args, **kwargs):
         super().initial(request, *args, **kwargs)
 
-    def _get_object(self, id):
+    def _get_object(self, camp_id):
         try:
-            return CampaignEntity.objects.get(id=id)
+            return CampaignEntity.objects.get(id=camp_id)
         except CampaignEntity.DoesNotExist:
             return JsonResponse(data={
                 "message": "campaign does not exists!",

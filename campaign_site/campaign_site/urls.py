@@ -23,7 +23,7 @@ urlpatterns = [
                   path('api/auth/', include('djoser.urls.base')),
 
                   path('api/auth/', include('djoser.urls.jwt')),
-                  # path('admin/', admin.site.urls),
+                  path('admin/', admin.site.urls),
                   path('api/identity/', include('identity.urls')),
                   path('api/reserve/', include('reserve.urls')),
 
