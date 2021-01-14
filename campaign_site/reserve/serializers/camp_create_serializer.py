@@ -4,7 +4,7 @@ from reserve.models.campaign_entity import CampaignEntity
 
 
 class CampsCreateFormSerializer(serializers.ModelSerializer):
-    # image=serializers.ImageField(max_length=None,use_url=True)
+    image=serializers.ImageField(max_length=None,use_url=True)
     class Meta:
         model = CampaignEntity
         fields = [
@@ -14,7 +14,7 @@ class CampsCreateFormSerializer(serializers.ModelSerializer):
             'year_of_entry',
             'capacity',
             'cost',
-            # 'image',
+            'image',
             'is_verified',
         ]
 
