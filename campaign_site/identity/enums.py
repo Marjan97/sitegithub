@@ -12,6 +12,8 @@ class UserType(ChoiceEnum):
     simple = 2
 
 
+
 class GenderType(ChoiceEnum):
     Male = 1
     Female = 2
+

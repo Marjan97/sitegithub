@@ -43,13 +43,15 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = RuntimeConfig.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = RuntimeConfig.EMAIL_HOST_PASSWORD
 
-#templated-email
+# templated-email
 DEFAULT_FROM_EMAIL = RuntimeConfig.EMAIL_HOST_USER
 DOMAIN = RuntimeConfig.DOMAIN_NAME
 
 # Application definition
 
 INSTALLED_APPS = [
+    'identity',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,11 +64,11 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'djoser',
 
-    'identity',
     'commons',
     'reserve',
 
     'corsheaders',
+    'import_export',
 
 ]
 
@@ -100,7 +102,7 @@ SITE_NAME = 'Campaign Reserving'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -151,15 +153,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-IR'
 
 TIME_ZONE = 'Asia/Tehran'
-
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N =False
 
-USE_TZ = False
+USE_TZ =False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -184,3 +185,7 @@ SIMPLE_JWT = {
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+IMPORT_EXPORT_USE_TRANSACTIONS = True

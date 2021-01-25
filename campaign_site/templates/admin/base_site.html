@@ -1,0 +1,19 @@
+{% extends "admin/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+{% block extrastyle %}
+     <link rel="stylesheet" type="text/css" href="{% static "css/admin_color.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}" />
+{% endblock %}
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'rajaeelogo.png' %}" height="40px" />
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+{% block content_title %}{% if title %}<h1 style="margin-top: 50px"></h1>{% endif %}{% endblock %}
