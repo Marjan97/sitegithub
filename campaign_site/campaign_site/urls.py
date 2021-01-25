@@ -18,7 +18,6 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-
 urlpatterns = [
                   path('api/auth/', include('djoser.urls.authtoken')),
                   path('api/auth/', include('djoser.urls.base')),

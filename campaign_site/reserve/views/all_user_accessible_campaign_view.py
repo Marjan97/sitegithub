@@ -15,7 +15,7 @@ from identity.models import UserEntity
 from reserve.serializers.camp_detail_sreializer import CampsDetailsSerializer
 
 
-class ShowHomeCamps(BasicView, APIView):
+class AllUserAccessibleCampaignView(BasicView, APIView):
     http_method_names = ['get', 'post']
     permission_classes = (IsAuthenticated,)
 
