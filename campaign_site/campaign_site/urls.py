@@ -23,9 +23,13 @@ urlpatterns = [
                   path('api/auth/', include('djoser.urls.base')),
 
                   path('api/auth/', include('djoser.urls.jwt')),
-                  path('admin/', admin.site.urls),
+                  path('adminpanel/', admin.site.urls),
                   path('api/identity/', include('identity.urls')),
                   path('api/reserve/', include('reserve.urls')),
                   # path('api/zarinpal/', include('zarinpal.urls')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = "Admin"
+admin.site.site_title = "Admin Portal"
+admin.site.index_title = "پنل مدیریت"
