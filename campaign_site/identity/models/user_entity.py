@@ -1,12 +1,11 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-# from phone_field import PhoneField
-from commons.manager.base_entity_manager import BaseEntityManager
-from identity.enums import UserType, GenderType
+
 from commons.models.base_entity import BaseEntity
+# from phone_field import PhoneField
+from identity.enums import UserType, GenderType
 from identity.manager.user_entity_manager import MyUserManager
-from reserve.models import CampaignEntity
 
 
 class UserEntity(AbstractUser, BaseEntity):

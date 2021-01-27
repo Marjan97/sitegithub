@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'identity',
     'commons',
     'reserve',
+    'zarinpal',
 
     'corsheaders',
 

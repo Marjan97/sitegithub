@@ -26,5 +26,6 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('api/identity/', include('identity.urls')),
                   path('api/reserve/', include('reserve.urls')),
+                  # path('api/zarinpal/', include('zarinpal.urls')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
