@@ -24,7 +24,7 @@ class RequestZarinpal(BasicView, APIView):
     def get(self, request, *args, **kwargs):
         camp_id = request.query_params.get('camp_id')
         campaign_entity = CampaignEntity.objects.get(id=camp_id)
-        callback_url = 'http://127.0.0.1:8000/campaignDetail/{}/'.format(camp_id)
+        callback_url = 'http://95.156.252.188:8000/campaignDetail/{}/'.format(camp_id)
         cost = campaign_entity.cost
         description = campaign_entity.description
         email = request.user.email

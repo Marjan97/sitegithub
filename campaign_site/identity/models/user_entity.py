@@ -10,7 +10,7 @@ from identity.manager.user_entity_manager import MyUserManager
 
 class UserEntity(AbstractUser, BaseEntity):
     username = None
-    is_staff = True
+    is_staff = None
     date_joined = None
     password = models.CharField(_('password'), null=True, blank=True, max_length=128)
     mobile_phone_number = models.CharField(max_length=12, blank=True, help_text='شماره تلفن را با 0 وارد کنید',

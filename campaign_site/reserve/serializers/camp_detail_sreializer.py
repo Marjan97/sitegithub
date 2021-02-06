@@ -25,4 +25,5 @@ class CampsDetailsSerializer(serializers.ModelSerializer):
             PayloadParamName.cost,
             PayloadParamName.execution_time,
             PayloadParamName.is_registered,
+            'image'
         ]
