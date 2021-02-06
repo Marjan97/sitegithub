@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from django.shortcuts import render
 from commons.views.basic_view import BasicView
 from commons.views.payload_param_name import PayloadParamName
-from reserve.models import campaign_entity, registered_users, CampaignEntity
+from reserve.models import campaign_entity, registered_users_entity, CampaignEntity
 from identity.models import UserEntity
 from reserve.serializers.camp_detail_sreializer import CampsDetailsSerializer
 

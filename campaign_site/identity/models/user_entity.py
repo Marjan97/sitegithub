@@ -13,18 +13,23 @@ class UserEntity(AbstractUser, BaseEntity):
     is_staff = True
     date_joined = None
     password = models.CharField(_('password'), null=True, blank=True, max_length=128)
-    mobile_phone_number = models.CharField(max_length=12, blank=True, help_text='شماره تلفن را با 0 وارد کنید', null=True,verbose_name='شماره تلفن همراه')
+    mobile_phone_number = models.CharField(max_length=12, blank=True, help_text='شماره تلفن را با 0 وارد کنید',
+                                           null=True, verbose_name='شماره تلفن همراه')
     # todo change name of otp
-    otp = models.PositiveIntegerField(blank=True, null=True,verbose_name='کد یکبار مصرف')
+    otp = models.PositiveIntegerField(blank=True, null=True, verbose_name='کد یکبار مصرف')
     otp_create_time = models.DateTimeField(auto_now=True)
-    user_type = models.IntegerField(choices=UserType.choices(),blank=True, default=UserType.simple.value,verbose_name='نوع کاربری دانشجو')
-    student_code = models.CharField(max_length=10,blank=True, unique=True, null=False,verbose_name='شماره دانشجویی')  # todo change name of student_code
-    national_code = models.CharField(max_length=10,blank=True, null=True,verbose_name='شماره ملی')
-    account_number = models.CharField(max_length=16, null=True,blank=True,verbose_name='شماره حساب')
-    field_of_study = models.CharField(max_length=20, blank=True,verbose_name='رشته تحصیلی')
-    gender = models.IntegerField(choices=GenderType.choices(), blank=True,null=True,verbose_name='جنسیت')
-    year_of_entry = models.IntegerField(null=True,blank=True,verbose_name='سال ورودی دانشجو')
-    is_guest = models.BooleanField(default=False,verbose_name='مهمان')
+    user_type = models.IntegerField(choices=UserType.choices(), blank=True, default=UserType.simple.value,
+                                    verbose_name='نوع کاربری دانشجو')
+    student_code = models.CharField(max_length=10, blank=True, unique=True, null=False,
+                                    verbose_name='شماره دانشجویی')  # todo change name of student_code
+    national_code = models.CharField(max_length=10, blank=True, null=True, verbose_name='شماره ملی')
+    account_number = models.CharField(max_length=16, null=True, blank=True, verbose_name='شماره حساب')
+    field_of_study = models.CharField(max_length=20, blank=True, verbose_name='رشته تحصیلی')
+    gender = models.IntegerField(choices=GenderType.choices(), blank=True, null=True, verbose_name='جنسیت')
+    year_of_entry = models.IntegerField(null=True, blank=True, verbose_name='سال ورودی دانشجو')
+    is_guest = models.BooleanField(default=False, verbose_name='مهمان')
+    credit = models.IntegerField(null=True, blank=True, default=0, verbose_name='بستانکاری')
+    checkout_requested = models.BooleanField(null=True, blank=True, default=0)
 
     objects = MyUserManager(alive_only=True)
     objects_including_deleted = MyUserManager(alive_only=False)
@@ -42,6 +47,5 @@ class UserEntity(AbstractUser, BaseEntity):
 
     class Meta:
         db_table = "user_entity"
-
 
         verbose_name_plural = "دانشجو"

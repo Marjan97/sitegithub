@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from reserve.models.registered_users import RegisteredUsers
+from reserve.models.registered_users_entity import RegisteredUsersEntity
 
 
 class CampsRegisteredUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RegisteredUsers
+        model = RegisteredUsersEntity
         fields = [
             'user',
             'campaign',

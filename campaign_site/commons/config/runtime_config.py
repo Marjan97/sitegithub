@@ -18,10 +18,10 @@ class DevelopmentRuntimeConfig:
     ]
     #
     MYSQL_DB_URL = "127.0.0.1"
-    MYSQL_DB_PORT = 3306
+    MYSQL_DB_PORT = 3000
     MYSQL_DB_USERNAME = "root"
-    MYSQL_DB_PASSWORD = "root"
-    MYSQL_DB_SCHEMA = "campaign_site_20201001"
+    MYSQL_DB_PASSWORD = "M@rjAnMAedeH7677"
+    MYSQL_DB_SCHEMA = "campaign_site_20201127"
     EMAIL_HOST_USER = None
     EMAIL_HOST_PASSWORD = None
     EMAIL_BACKEND = None

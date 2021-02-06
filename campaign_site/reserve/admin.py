@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export import resources, fields
-from .models import RegisteredUsers, CampaignEntity
+from .models import RegisteredUsersEntity, CampaignEntity
 from django.contrib.auth.models import Group
 from import_export.admin import ImportExportModelAdmin
 from rest_framework.authtoken.models import Token
@@ -36,7 +36,7 @@ class CampaignEntityAdmin(ImportExportModelAdmin):
     list_filter = ("execution_time","is_canceled","year_of_entry",)
 
 
-@admin.register(RegisteredUsers)
+@admin.register(RegisteredUsersEntity)
 class RegisteredUsersAdmin(admin.ModelAdmin):
     list_per_page = 1
     # list_filter = ("year",)

@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from reserve.models import CampaignEntity, RegisteredUsers
+from reserve.models import CampaignEntity, RegisteredUsersEntity
 from identity.models import UserEntity
 from rest_framework.generics import get_object_or_404
 

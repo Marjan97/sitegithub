@@ -15,3 +15,5 @@ class PayloadParamName:
     user_id = "user_id"
     count = "count"
     account_number = "account_number"
+    student_code = "student_code"
+    success = "success"

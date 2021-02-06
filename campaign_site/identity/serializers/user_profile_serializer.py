@@ -11,5 +11,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
             PayloadParamName.account_number,
             PayloadParamName.email,
             PayloadParamName.mobile_phone_number,
+            PayloadParamName.student_code,
         ]
-
+        read_only_fields = [
+            PayloadParamName.student_code,
+        ]
